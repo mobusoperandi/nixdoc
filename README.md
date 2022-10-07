@@ -14,8 +14,14 @@ Nix suffers from a lack of documentation in its "standard library" and in the ec
 Existing documentation tends to vary in format and quality.
 
 ## Goals
+
 Develop a documentation generator for the nix ecosystem.
 
+## Example input
 
-### Usage
-Example 
+```nix
+{
+  
+}
+```
+
