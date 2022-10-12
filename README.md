@@ -42,3 +42,18 @@ Develop a documentation generator for the nix ecosystem.
 ```
 
 # Example output
+
+## `/pkgs/lib/attrs.nix`
+
+Return if an attribute from nested attribute set exists.
+Example:
+
+```nix
+let
+  x = {
+    a = {
+      b = 3;
+    };
+  };
+in assert hasAttrByPath ["a" "b"] x; true
+```
