@@ -19,14 +19,16 @@ Develop a documentation generator for the nix ecosystem.
 
 ```nix
 {
-  /* Return if an attribute from nested attribute set exists.
-     Example:
-       x = { a = { b = 3; }; }
-       hasAttrByPath ["a" "b"] x
-       => true
-       hasAttrByPath ["z" "z"] x
-       => false
-  */
+  ## Return if an attribute from nested attribute set exists.
+  ## Example:
+  ##
+  ## ```
+  ## x = { a = { b = 3; }; }
+  ## hasAttrByPath ["a" "b"] x
+  ## => true
+  ## hasAttrByPath ["z" "z"] x
+  ## => false 
+  ## ```
   hasAttrByPath = attrPath: e:
     let attr = head attrPath;
     in
@@ -38,5 +40,3 @@ Develop a documentation generator for the nix ecosystem.
 ```
 
 # Example output
-
-
