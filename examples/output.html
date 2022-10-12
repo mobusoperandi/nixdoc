@@ -4,7 +4,22 @@
 		<title>input.nix</title>
 	</head>
 	<body>
-		<h1>input.nix</h1>	
 		<p>Evaluated using nix (Nix) 2.11.0 at 2022-10-12 10:47.</p>
+		<details>
+			<summary><code>input.nix {}</code></summary>
+			<details>
+				<summary><code>hasAttrByPath</code></summary>
+				<p>Return if an attribute from nested attribute set exists. Example:</p>
+				<pre><code>
+let
+  x = {
+    a = {
+      b = 3;
+    };
+  };
+in assert hasAttrByPath ["a" "b"] x; true
+				</code></pre>
+			</details>
+		</details>
 	</body>
 </html>
