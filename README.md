@@ -23,11 +23,13 @@ Develop a documentation generator for the nix ecosystem.
   ## Example:
   ##
   ## ```
-  ## x = { a = { b = 3; }; }
-  ## hasAttrByPath ["a" "b"] x
-  ## => true
-  ## hasAttrByPath ["z" "z"] x
-  ## => false 
+  ## let
+  ##   x = {
+  ##     a = {
+  ##       b = 3;
+  ##     };
+  ##   };
+  ## in assert hasAttrByPath ["a" "b"] x; true
   ## ```
   hasAttrByPath = attrPath: e:
     let attr = head attrPath;
