@@ -43,7 +43,9 @@ Develop a documentation generator for the nix ecosystem.
 
 # Example output
 
-## `/pkgs/lib/attrs.nix`
+## `pkgs/lib/attrs.nix`
+
+This module evaluates into an attribute set.
 
 Return if an attribute from nested attribute set exists.
 Example:
