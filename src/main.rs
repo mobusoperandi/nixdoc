@@ -13,12 +13,33 @@ struct Attr {
 enum Value {
     AttrSet(Vec<Attr>),
     Number,
-    string(&'static str),
+    String(&'static str),
     Function,
     Bool,
 }
 
+use Value::*;
+
 const EXAMPLE: Node = Node {
-    doc: Some(r#""#),
-    value: todo!(),
+    doc: Some("Example!"),
+    value: AttrSet(vec![Attr {
+        ident: "hasAttrByPath",
+        node: Node {
+            doc: Some(
+                r#"Return if an attribute from nested attribute set exists.
+                Example:
+
+                ```
+                let
+                  x = {
+                    a = {
+                      b = 3;
+                    };
+                  };
+                in assert hasAttrByPath ["a" "b"] x; true
+                ```"#,
+            ),
+            value: todo!(),
+        },
+    }]),
 };
