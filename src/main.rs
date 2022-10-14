@@ -3,7 +3,7 @@ fn main() {
 }
 
 struct Node {
-    doc: String,
+    doc: Option<String>,
     value: Value,
 }
 
@@ -20,5 +20,7 @@ enum Value {
     Bool,
 }
 
-const v: Vec<()> = Vec::new();
-
+const EXAMPLE: Node = Node {
+    doc: todo!(),
+    value: todo!(),
+};
