@@ -48,16 +48,40 @@ fn main() {
                 ident: "utils".to_string(),
                 node: Node {
                     doc: Some("Utilities".to_string()),
-                    value: AttrSet(vec![Attr {
-                        ident: "parse".to_string(),
-                        node: Node {
-                            doc: Some("".to_string()),
-                            value: Func(Function {
-                                param: "e".to_string(),
-                                function: None,
-                            }),
+                    value: AttrSet(vec![
+                        Attr {
+                            ident: "parse".to_string(),
+                            node: Node {
+                                doc: Some(
+                                    r#"Convert a JSON string to a Nix value. For example,
+
+                                    ```
+                                    builtins.fromJSON ''{"x": [1, 2, 3], "y": null}''
+                                    ```
+
+                                    returns the value { x = [ 1 2 3 ]; y = null; }."#
+                                        .to_string(),
+                                ),
+                                value: Func(Function {
+                                    param: "e".to_string(),
+                                    function: None,
+                                }),
+                            },
                         },
-                    }]),
+                        Attr {
+                            ident: "isGreaterThan3".to_string(),
+                            node: Node {
+                                doc: Some(
+                                    "Returns true if a provided number is greater than 3."
+                                        .to_string(),
+                                ),
+                                value: Func(Function {
+                                    param: "n".to_string(),
+                                    function: None,
+                                }),
+                            },
+                        },
+                    ]),
                 },
             },
         ]),
