@@ -20,5 +20,12 @@
     else false;
   ## Returns true if a provided number is greater than 3.
   isGreaterThan3 = n: n > 3;
+  ## The system
   system = "x86_64-linux";
+  ## Utilities
+  utils = {
+    ## This comment will not show up in documentation, at all.
+    parse = builtins.fromJSON;
+    date = {};
+  };
 }
