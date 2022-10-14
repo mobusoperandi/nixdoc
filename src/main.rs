@@ -2,11 +2,12 @@ use Value::*;
 fn main() {
     let example = Node {
         doc: Some("Example!".to_string()),
-        value: AttrSet(vec![Attr {
-            ident: "hasAttrByPath".to_string(),
-            node: Node {
-                doc: Some(
-                    r#"Return if an attribute from nested attribute set exists.
+        value: AttrSet(vec![
+            Attr {
+                ident: "hasAttrByPath".to_string(),
+                node: Node {
+                    doc: Some(
+                        r#"Return if an attribute from nested attribute set exists.
                     Example:
 
                     ```
@@ -18,11 +19,42 @@ fn main() {
                       };
                     in assert hasAttrByPath ["a" "b"] x; true
                     ```"#
-                        .to_string(),
-                ),
-                value: Function(Function),
+                            .to_string(),
+                    ),
+                    value: Func(Function {
+                        param: "attrPath".to_string(),
+                        function: Some(Box::new(Function {
+                            param: "e".to_string(),
+                            function: None,
+                        })),
+                    }),
+                },
             },
-        }]),
+            Attr {
+                ident: "system".to_string(),
+                node: Node {
+                    doc: Some("The system".to_string()),
+                    value: Str("x86_64-linux".to_string()),
+                },
+            },
+            Attr {
+                ident: "buildCores".to_string(),
+                node: Node {
+                    doc: Some("The amount of cores".to_string()),
+                    value: Number(5),
+                },
+            },
+            Attr {
+                ident: "utils".to_string(),
+                node: AttrSet(vec![Attr {
+                    ident: "parse".to_string(),
+                    node: Func(Function {
+                        param: (),
+                        function: (),
+                    }),
+                }]),
+            },
+        ]),
     };
 }
 
@@ -38,9 +70,9 @@ struct Attr {
 
 enum Value {
     AttrSet(Vec<Attr>),
-    Number,
+    Number(usize),
     Str(String),
-    Function(Function),
+    Func(Function),
     Bool,
 }
 
