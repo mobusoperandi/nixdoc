@@ -1,26 +1,24 @@
-fn main() {
-
-}
+fn main() {}
 
 struct Node {
-    doc: Option<String>,
+    doc: Option<&'static str>,
     value: Value,
 }
 
 struct Attr {
-    ident: String,
+    ident: &'static str,
     node: Node,
 }
 
 enum Value {
     AttrSet(Vec<Attr>),
     Number,
-    String,
+    string(&'static str),
     Function,
     Bool,
 }
 
 const EXAMPLE: Node = Node {
-    doc: todo!(),
+    doc: Some(r#""#),
     value: todo!(),
 };
