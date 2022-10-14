@@ -1,7 +1,8 @@
+use Value::*;
 fn main() {
     let example = Node {
         doc: Some("Example!".to_string()),
-        value: Value::AttrSet(vec![Attr {
+        value: AttrSet(vec![Attr {
             ident: "hasAttrByPath".to_string(),
             node: Node {
                 doc: Some(
@@ -19,7 +20,7 @@ fn main() {
                     ```"#
                         .to_string(),
                 ),
-                value: Value::Function(Function),
+                value: Function(Function),
             },
         }]),
     };
@@ -44,5 +45,6 @@ enum Value {
 }
 
 struct Function {
-    param: 
+    param: String,
+    function: Option<Box<Function>>,
 }
