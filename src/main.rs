@@ -46,13 +46,19 @@ fn main() {
             },
             Attr {
                 ident: "utils".to_string(),
-                node: AttrSet(vec![Attr {
-                    ident: "parse".to_string(),
-                    node: Func(Function {
-                        param: (),
-                        function: (),
-                    }),
-                }]),
+                node: Node {
+                    doc: Some("Utilities".to_string()),
+                    value: AttrSet(vec![Attr {
+                        ident: "parse".to_string(),
+                        node: Node {
+                            doc: Some("".to_string()),
+                            value: Func(Function {
+                                param: "e".to_string(),
+                                function: None,
+                            }),
+                        },
+                    }]),
+                },
             },
         ]),
     };
