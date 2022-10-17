@@ -1,3 +1,5 @@
+use maud::html;
+
 fn main() {
     let example = Node {
         doc: Some("Example!".to_string()),
@@ -90,6 +92,13 @@ fn main() {
     std::fs::write("examples/output.html", &output).unwrap();
 }
 
+fn generate(node: Node) -> String {
+    html! {
+        (maud::DOCTYPE)
+    }
+    .0
+}
+
 struct Node {
     doc: Option<String>,
     value: Value,
@@ -112,4 +121,3 @@ struct Function {
     param: String,
     function: Option<Box<Function>>,
 }
-
