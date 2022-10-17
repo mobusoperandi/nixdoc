@@ -120,6 +120,9 @@ fn document_node(node: Node) -> PreEscaped<String> {
 
     html! {
         details open {
+            @if let Some(doc) = node.doc {
+                pre { code { (doc) } }
+            }
             summary { code { (type_) } }
             (contents)
         }
@@ -127,7 +130,7 @@ fn document_node(node: Node) -> PreEscaped<String> {
 }
 
 fn document_attr(Attr { ident, node }: Attr) -> PreEscaped<String> {
-    html!{
+    html! {
         li {
             code { (ident) }
             br;
