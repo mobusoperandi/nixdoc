@@ -107,15 +107,14 @@ fn document_module(node: Node) -> String {
 }
 
 fn document_node(node: Node) -> PreEscaped<String> {
-    let type_ = match node.value {
-        Value::AttrSet(_) => todo!(),
-        Value::Number(_) => todo!(),
-        Value::String(_) => todo!(),
-        Value::Function(_) => todo!(),
-        Value::Boolean => todo!(),
+    let (type_, contents) = match node.value {
+        Value::AttrSet(_) => ("{}".to_owned(), ""),
+        Value::Number(number) => (number.to_string(), ""),
+        Value::String(string) => (format!("\"{string}\""), ""),
+        Value::Function(function) => (function.param, ""),
+        Value::Boolean(value) => (value.to_string(), "")
     };
 
-    let contents = match node {};
 
     html! {
         details {
@@ -140,7 +139,7 @@ enum Value {
     Number(usize),
     String(String),
     Function(Function),
-    Boolean,
+    Boolean(bool),
 }
 
 struct Function {
