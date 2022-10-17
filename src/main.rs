@@ -108,16 +108,15 @@ fn document_module(node: Node) -> String {
 
 fn document_node(node: Node) -> PreEscaped<String> {
     let (type_, contents) = match node.value {
-        Value::AttrSet(_) => ("{}".to_owned(), ""),
+        Value::AttrSet(attrs) => ("{}".to_owned(), attrs.into_iter().map(|attr| )),
         Value::Number(number) => (number.to_string(), ""),
         Value::String(string) => (format!("\"{string}\""), ""),
         Value::Function(function) => (function.param, ""),
-        Value::Boolean(value) => (value.to_string(), "")
+        Value::Boolean(value) => (value.to_string(), ""),
     };
 
-
     html! {
-        details {
+        details open {
             summary { code { (type_) } }
             (contents)
         }
