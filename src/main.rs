@@ -1,4 +1,4 @@
-use maud::{html, DOCTYPE, PreEscaped};
+use maud::{html, PreEscaped, DOCTYPE};
 
 fn main() {
     let example = Node {
@@ -107,8 +107,21 @@ fn document_module(node: Node) -> String {
 }
 
 fn document_node(node: Node) -> PreEscaped<String> {
-    html!{
+    let type_ = match node.value {
+        Value::AttrSet(_) => todo!(),
+        Value::Number(_) => todo!(),
+        Value::String(_) => todo!(),
+        Value::Function(_) => todo!(),
+        Value::Boolean => todo!(),
+    };
 
+    let contents = match node {};
+
+    html! {
+        details {
+            summary { code { (type_) } }
+            (contents)
+        }
     }
 }
 
