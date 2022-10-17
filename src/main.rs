@@ -108,14 +108,17 @@ fn document_module(node: Node) -> String {
 
 fn document_node(node: Node) -> PreEscaped<String> {
     let (type_, contents): (String, PreEscaped<String>) = match node.value {
-        Value::AttrSet(attrs) => (
-            "{}".to_owned(),
-            html! { ul { (attrs.into_iter().map(document_attr).collect()) } },
-        ),
-        Value::Number(number) => (number.to_string(), ""),
-        Value::String(string) => (format!("\"{string}\""), ""),
-        Value::Function(function) => (function.param, ""),
-        Value::Boolean(value) => (value.to_string(), ""),
+        Value::AttrSet(attrs) => ("{}".to_owned(), {
+            html! { ul { (attrs.into_iter().map(document_attr).collect::<PreEscaped<String>>()) } }
+
+            html! { ul { @for attr in attrs {
+                attr
+            } } }
+        }),
+        Value::Number(number) => (number.to_string(), html!()),
+        Value::String(string) => (format!("\"{string}\""), html!()),
+        Value::Function(function) => (function.param, html!()),
+        Value::Boolean(value) => (value.to_string(), html!()),
     };
 
     html! {
