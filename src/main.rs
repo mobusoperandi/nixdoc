@@ -1,8 +1,7 @@
-use Value::*;
 fn main() {
     let example = Node {
         doc: Some("Example!".to_string()),
-        value: AttrSet(vec![
+        value: Value::AttrSet(vec![
             Attr {
                 ident: "hasAttrByPath".to_string(),
                 node: Node {
@@ -21,7 +20,7 @@ fn main() {
                     ```"#
                             .to_string(),
                     ),
-                    value: Func(Function {
+                    value: Value::Func(Function {
                         param: "attrPath".to_string(),
                         function: Some(Box::new(Function {
                             param: "e".to_string(),
@@ -34,21 +33,21 @@ fn main() {
                 ident: "system".to_string(),
                 node: Node {
                     doc: Some("The system".to_string()),
-                    value: Str("x86_64-linux".to_string()),
+                    value: Value::String("x86_64-linux".to_string()),
                 },
             },
             Attr {
                 ident: "buildCores".to_string(),
                 node: Node {
                     doc: Some("The amount of cores".to_string()),
-                    value: Number(5),
+                    value: Value::Number(5),
                 },
             },
             Attr {
                 ident: "utils".to_string(),
                 node: Node {
                     doc: Some("Utilities".to_string()),
-                    value: AttrSet(vec![
+                    value: Value::AttrSet(vec![
                         Attr {
                             ident: "parse".to_string(),
                             node: Node {
@@ -62,7 +61,7 @@ fn main() {
                                     returns the value { x = [ 1 2 3 ]; y = null; }."#
                                         .to_string(),
                                 ),
-                                value: Func(Function {
+                                value: Value::Func(Function {
                                     param: "e".to_string(),
                                     function: None,
                                 }),
@@ -75,7 +74,7 @@ fn main() {
                                     "Returns true if a provided number is greater than 3."
                                         .to_string(),
                                 ),
-                                value: Func(Function {
+                                value: Value::Func(Function {
                                     param: "n".to_string(),
                                     function: None,
                                 }),
@@ -101,7 +100,7 @@ struct Attr {
 enum Value {
     AttrSet(Vec<Attr>),
     Number(usize),
-    Str(String),
+    String(String),
     Func(Function),
     Bool,
 }
