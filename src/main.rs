@@ -107,8 +107,11 @@ fn document_module(node: Node) -> String {
 }
 
 fn document_node(node: Node) -> PreEscaped<String> {
-    let (type_, contents) = match node.value {
-        Value::AttrSet(attrs) => ("{}".to_owned(), attrs.into_iter().map(|attr| )),
+    let (type_, contents): (String, PreEscaped<String>) = match node.value {
+        Value::AttrSet(attrs) => (
+            "{}".to_owned(),
+            html! { ul { (attrs.into_iter().map(document_attr).collect()) } },
+        ),
         Value::Number(number) => (number.to_string(), ""),
         Value::String(string) => (format!("\"{string}\""), ""),
         Value::Function(function) => (function.param, ""),
@@ -121,6 +124,10 @@ fn document_node(node: Node) -> PreEscaped<String> {
             (contents)
         }
     }
+}
+
+fn document_attr(Attr { ident, node }: Attr) -> PreEscaped<String> {
+    todo!()
 }
 
 struct Node {
