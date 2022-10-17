@@ -20,7 +20,7 @@ fn main() {
                     ```"#
                             .to_string(),
                     ),
-                    value: Value::Func(Function {
+                    value: Value::Function(Function {
                         param: "attrPath".to_string(),
                         function: Some(Box::new(Function {
                             param: "e".to_string(),
@@ -61,7 +61,7 @@ fn main() {
                                     returns the value { x = [ 1 2 3 ]; y = null; }."#
                                         .to_string(),
                                 ),
-                                value: Value::Func(Function {
+                                value: Value::Function(Function {
                                     param: "e".to_string(),
                                     function: None,
                                 }),
@@ -74,7 +74,7 @@ fn main() {
                                     "Returns true if a provided number is greater than 3."
                                         .to_string(),
                                 ),
-                                value: Value::Func(Function {
+                                value: Value::Function(Function {
                                     param: "n".to_string(),
                                     function: None,
                                 }),
@@ -85,6 +85,9 @@ fn main() {
             },
         ]),
     };
+
+    let output = generate(example);
+    std::fs::write("examples/output.html", &output).unwrap();
 }
 
 struct Node {
@@ -101,11 +104,12 @@ enum Value {
     AttrSet(Vec<Attr>),
     Number(usize),
     String(String),
-    Func(Function),
-    Bool,
+    Function(Function),
+    Boolean,
 }
 
 struct Function {
     param: String,
     function: Option<Box<Function>>,
 }
+
