@@ -1,4 +1,4 @@
-use maud::html;
+use maud::{html, DOCTYPE, PreEscaped};
 
 fn main() {
     let example = Node {
@@ -88,15 +88,28 @@ fn main() {
         ]),
     };
 
-    let output = generate(example);
+    let output = document_module(example);
     std::fs::write("examples/output.html", &output).unwrap();
 }
 
-fn generate(node: Node) -> String {
+fn document_module(node: Node) -> String {
     html! {
-        (maud::DOCTYPE)
+        (DOCTYPE)
+        html {
+            head { title { "index.nix" } }
+            body {
+                p { "Evaluated using nix (Nix) 2.11.0 at 2022-10-12 10:47." }
+                (document_node(node))
+            }
+        }
     }
     .0
+}
+
+fn document_node(node: Node) -> PreEscaped<String> {
+    html!{
+
+    }
 }
 
 struct Node {
